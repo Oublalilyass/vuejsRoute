@@ -1,20 +1,36 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+<div id="nav">
+  <nav>
+
+ <router-link to="/">Home</router-link> |
+  <router-link to="about">About</router-link> |
+  <router-link :to="{name: 'Product', params : {name : 'Skate'}}"> Product 1</router-link> |
+  <router-link :to="{name: 'Product', params : {name : 'VTT'}}"> Product 2 </router-link> |
+  <button @click="showProduct('TV')">Product 3</button>
+
+  </nav>
+ 
+</div>
+<router-view />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+export default{
+ name: 'App',
+ methods:{
+   showProduct: function(name){
+    this.$router.push({name: 'Product', params : {name: name}});
+   }
+ }
 
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
 }
+
 </script>
 
 <style>
+#nav router-link {
+  padding: 10px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -22,5 +38,13 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+a{
+
+  text-decoration: none;
+  color: #999;
+}
+button{
+  color: #999;
 }
 </style>
